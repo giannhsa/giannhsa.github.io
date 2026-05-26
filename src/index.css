@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: #050507;
+}
+
+.stars {
+  background-image:
+    radial-gradient(circle, rgba(226, 232, 240, 0.85) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(147, 197, 253, 0.55) 0 1px, transparent 1.3px),
+    radial-gradient(circle, rgba(199, 210, 254, 0.45) 0 1px, transparent 1.2px);
+  background-position:
+    0 0,
+    54px 74px,
+    118px 36px;
+  background-size:
+    170px 170px,
+    240px 240px,
+    320px 320px;
+  animation: star-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes star-drift {
+  0% {
+    opacity: 0.38;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0.72;
+    transform: translate3d(0, -22px, 0) scale(1.02);
+  }
+}
+
+::selection {
+  background: rgba(129, 140, 248, 0.38);
+  color: #fff;
+}
