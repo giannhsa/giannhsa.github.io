@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import TimeCounter from './TimeCounter.jsx';
+import AnniversaryCelebration from './AnniversaryCelebration.jsx';
 
 const particles = Array.from({ length: 18 }, (_, index) => ({
   id: index,
@@ -41,6 +42,7 @@ function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
       >
+        <AnniversaryCelebration />
         <p className="mb-6 text-xs font-medium uppercase tracking-[0.42em] text-indigo-200/60">
           Personal archive
         </p>

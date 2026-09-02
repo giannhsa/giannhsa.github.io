@@ -47,6 +47,42 @@ body {
   }
 }
 
+.anniversary-heart {
+  animation: anniversary-float 6s ease-in infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes anniversary-float {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-8deg) scale(0.7);
+  }
+
+  18% {
+    opacity: 0.65;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(12px, -190px, 0) rotate(16deg) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .stars,
+  .anniversary-heart {
+    animation: none;
+  }
+
+  .anniversary-heart {
+    display: none;
+  }
+}
+
 ::selection {
   background: rgba(129, 140, 248, 0.38);
   color: #fff;
