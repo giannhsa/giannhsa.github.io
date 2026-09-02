@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { getRelationshipStats } from '../data/relationship.js';
+import Heartbeat from './Heartbeat.jsx';
 
 function RelationshipStats({ memoryCount }) {
   const { months, days } = getRelationshipStats();
@@ -36,6 +37,7 @@ function RelationshipStats({ memoryCount }) {
             </div>
           ))}
         </div>
+        <Heartbeat />
       </motion.div>
     </section>
   );

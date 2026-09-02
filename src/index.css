@@ -66,6 +66,56 @@ body {
   animation: anniversary-glow 5s ease-in-out infinite alternate;
 }
 
+.shooting-stars i {
+  position: absolute;
+  top: -8%;
+  left: 15%;
+  width: 110px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(191, 219, 254, 0.85));
+  filter: drop-shadow(0 0 5px rgba(147, 197, 253, 0.7));
+  opacity: 0;
+  transform: rotate(-35deg);
+  animation: shooting-star 9s linear infinite;
+}
+
+.shooting-stars i:nth-child(2) {
+  left: 52%;
+  animation-delay: 3.4s;
+  animation-duration: 11s;
+}
+
+.shooting-stars i:nth-child(3) {
+  left: 78%;
+  animation-delay: 6.8s;
+  animation-duration: 13s;
+}
+
+.shooting-stars i:nth-child(4) {
+  left: 34%;
+  animation-delay: 9.2s;
+  animation-duration: 15s;
+}
+
+.anniversary-mode .shooting-stars i {
+  background: linear-gradient(90deg, transparent, rgba(251, 207, 232, 0.95));
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.85));
+}
+
+@keyframes shooting-star {
+  0%, 72% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-35deg);
+  }
+  74% { opacity: 1; }
+  82% {
+    opacity: 0;
+    transform: translate3d(-55vw, 55vh, 0) rotate(-35deg);
+  }
+  100% { opacity: 0; }
+}
+
 @keyframes anniversary-glow {
   from { opacity: 0.18; }
   to { opacity: 0.48; }
@@ -94,7 +144,8 @@ body {
 
   .stars,
   .anniversary-heart,
-  .anniversary-sparkle {
+  .anniversary-sparkle,
+  .shooting-stars i {
     animation: none;
   }
 

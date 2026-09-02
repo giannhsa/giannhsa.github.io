@@ -7,6 +7,9 @@ import NextMilestone from './components/NextMilestone.jsx';
 import { memories, nextMilestone } from './data/memories.js';
 import { isMonthlyAnniversary } from './data/relationship.js';
 import RelationshipStats from './components/RelationshipStats.jsx';
+import AnniversaryFireworks from './components/AnniversaryFireworks.jsx';
+import MonthlyFlower from './components/MonthlyFlower.jsx';
+import LoveLetter from './components/LoveLetter.jsx';
 
 function App() {
   const [selectedMemory, setSelectedMemory] = useState(null);
@@ -21,11 +24,15 @@ function App() {
 
   return (
     <main className={`relative min-h-screen overflow-hidden bg-zinc-950 text-zinc-50 ${anniversaryMode ? 'anniversary-mode' : ''}`}>
+      <AnniversaryFireworks active={anniversaryMode} />
       <motion.div
         className={`pointer-events-none fixed inset-0 ${anniversaryMode ? 'anniversary-background' : 'bg-[radial-gradient(circle_at_50%_-10%,rgba(79,70,229,0.35),transparent_34%),radial-gradient(circle_at_80%_18%,rgba(37,99,235,0.18),transparent_26%),radial-gradient(circle_at_20%_78%,rgba(88,28,135,0.26),transparent_30%),linear-gradient(180deg,#050507_0%,#09090f_48%,#030306_100%)]'}`}
         style={{ y: ambientY }}
       />
       <div className="pointer-events-none fixed inset-0 stars opacity-60" />
+      <div className="pointer-events-none fixed inset-0 shooting-stars" aria-hidden="true">
+        {[0, 1, 2, 3].map((star) => <i key={star} />)}
+      </div>
       {anniversaryMode && <div className="pointer-events-none fixed inset-0 anniversary-sparkle" aria-hidden="true" />}
       <div className="pointer-events-none fixed inset-x-0 top-0 h-40 bg-gradient-to-b from-zinc-950 to-transparent" />
 
@@ -33,9 +40,11 @@ function App() {
         <Hero anniversaryMode={anniversaryMode} />
         <RelationshipStats memoryCount={memories.length} />
         <Timeline memories={memories} onOpenMemory={setSelectedMemory} />
+        <MonthlyFlower />
         <NextMilestone milestone={nextMilestone} />
+        <LoveLetter />
 
-        <section className="mx-auto flex min-h-[60vh] max-w-5xl items-center justify-center px-6 text-center">
+        <section className="mx-auto flex min-h-[40vh] max-w-5xl items-center justify-center px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
