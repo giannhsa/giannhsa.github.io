@@ -10,6 +10,7 @@ import RelationshipStats from './components/RelationshipStats.jsx';
 import AnniversaryFireworks from './components/AnniversaryFireworks.jsx';
 import MonthlyFlower from './components/MonthlyFlower.jsx';
 import LoveLetter from './components/LoveLetter.jsx';
+import FlyingCat from './components/FlyingCat.jsx';
 
 function App() {
   const [selectedMemory, setSelectedMemory] = useState(null);
@@ -25,6 +26,7 @@ function App() {
   return (
     <main className={`relative min-h-screen overflow-hidden bg-zinc-950 text-zinc-50 ${anniversaryMode ? 'anniversary-mode' : ''}`}>
       <AnniversaryFireworks active={anniversaryMode} />
+      <FlyingCat />
       <motion.div
         className={`pointer-events-none fixed inset-0 ${anniversaryMode ? 'anniversary-background' : 'bg-[radial-gradient(circle_at_50%_-10%,rgba(79,70,229,0.35),transparent_34%),radial-gradient(circle_at_80%_18%,rgba(37,99,235,0.18),transparent_26%),radial-gradient(circle_at_20%_78%,rgba(88,28,135,0.26),transparent_30%),linear-gradient(180deg,#050507_0%,#09090f_48%,#030306_100%)]'}`}
         style={{ y: ambientY }}
