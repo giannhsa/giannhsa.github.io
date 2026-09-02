@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { isMonthlyAnniversary } from '../data/relationship.js';
 
 const hearts = Array.from({ length: 12 }, (_, index) => ({
   id: index,
@@ -8,12 +9,8 @@ const hearts = Array.from({ length: 12 }, (_, index) => ({
   size: index % 3 === 0 ? 'text-lg' : 'text-xs',
 }));
 
-export function isAnniversaryDay(date = new Date()) {
-  return date.getDate() === 2;
-}
-
 function AnniversaryCelebration({ today = new Date() }) {
-  if (!isAnniversaryDay(today)) return null;
+  if (!isMonthlyAnniversary(today)) return null;
 
   return (
     <motion.aside

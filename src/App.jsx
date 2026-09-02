@@ -1,27 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import Hero from './components/Hero.jsx';
 import Timeline from './components/Timeline.jsx';
 import MemoryModal from './components/MemoryModal.jsx';
 import NextMilestone from './components/NextMilestone.jsx';
 import { memories, nextMilestone } from './data/memories.js';
+import { isMonthlyAnniversary } from './data/relationship.js';
+import RelationshipStats from './components/RelationshipStats.jsx';
 
 function App() {
   const [selectedMemory, setSelectedMemory] = useState(null);
+  const [anniversaryMode, setAnniversaryMode] = useState(() => isMonthlyAnniversary());
   const { scrollYProgress } = useScroll();
   const ambientY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
 
+  useEffect(() => {
+    const interval = window.setInterval(() => setAnniversaryMode(isMonthlyAnniversary()), 60000);
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
-    <main className="relative min-h-screen overflow-hidden bg-zinc-950 text-zinc-50">
+    <main className={`relative min-h-screen overflow-hidden bg-zinc-950 text-zinc-50 ${anniversaryMode ? 'anniversary-mode' : ''}`}>
       <motion.div
-        className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(79,70,229,0.35),transparent_34%),radial-gradient(circle_at_80%_18%,rgba(37,99,235,0.18),transparent_26%),radial-gradient(circle_at_20%_78%,rgba(88,28,135,0.26),transparent_30%),linear-gradient(180deg,#050507_0%,#09090f_48%,#030306_100%)]"
+        className={`pointer-events-none fixed inset-0 ${anniversaryMode ? 'anniversary-background' : 'bg-[radial-gradient(circle_at_50%_-10%,rgba(79,70,229,0.35),transparent_34%),radial-gradient(circle_at_80%_18%,rgba(37,99,235,0.18),transparent_26%),radial-gradient(circle_at_20%_78%,rgba(88,28,135,0.26),transparent_30%),linear-gradient(180deg,#050507_0%,#09090f_48%,#030306_100%)]'}`}
         style={{ y: ambientY }}
       />
       <div className="pointer-events-none fixed inset-0 stars opacity-60" />
+      {anniversaryMode && <div className="pointer-events-none fixed inset-0 anniversary-sparkle" aria-hidden="true" />}
       <div className="pointer-events-none fixed inset-x-0 top-0 h-40 bg-gradient-to-b from-zinc-950 to-transparent" />
 
       <div className="relative z-10">
-        <Hero />
+        <Hero anniversaryMode={anniversaryMode} />
+        <RelationshipStats memoryCount={memories.length} />
         <Timeline memories={memories} onOpenMemory={setSelectedMemory} />
         <NextMilestone milestone={nextMilestone} />
 

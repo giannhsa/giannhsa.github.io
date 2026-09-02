@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import TimeCounter from './TimeCounter.jsx';
 import AnniversaryCelebration from './AnniversaryCelebration.jsx';
+import AnniversaryCountdown from './AnniversaryCountdown.jsx';
 
 const particles = Array.from({ length: 18 }, (_, index) => ({
   id: index,
@@ -10,7 +11,7 @@ const particles = Array.from({ length: 18 }, (_, index) => ({
   delay: index * 0.18,
 }));
 
-function Hero() {
+function Hero({ anniversaryMode = false }) {
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.35], ['0%', '16%']);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.2]);
@@ -43,15 +44,18 @@ function Hero() {
         transition={{ duration: 1, ease: 'easeOut' }}
       >
         <AnniversaryCelebration />
-        <p className="mb-6 text-xs font-medium uppercase tracking-[0.42em] text-indigo-200/60">
-          Personal archive
+        <p className={`mb-6 text-xs font-medium uppercase tracking-[0.42em] ${anniversaryMode ? 'text-rose-100/70' : 'text-indigo-200/60'}`}>
+          {anniversaryMode ? 'Celebrating us' : 'Personal archive'}
         </p>
         <h1 className="font-display text-5xl leading-[0.95] tracking-tight text-zinc-50 md:text-8xl">
-          Our Favorite Moments
+          {anniversaryMode ? 'Another Beautiful Month Together' : 'Our Favorite Moments'}
         </h1>
         <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-slate-300/78 md:text-xl">
-          A quiet timeline of dates, photographs, and the small details that stayed.
+          {anniversaryMode
+            ? 'Today the whole page is celebrating our story, our memories, and everything still ahead.'
+            : 'A quiet timeline of dates, photographs, and the small details that stayed.'}
         </p>
+        <AnniversaryCountdown />
         <TimeCounter />
       </motion.div>
     </section>

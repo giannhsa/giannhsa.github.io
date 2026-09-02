@@ -52,6 +52,25 @@ body {
   will-change: transform, opacity;
 }
 
+.anniversary-background {
+  background:
+    radial-gradient(circle at 50% -5%, rgba(244, 114, 182, 0.34), transparent 34%),
+    radial-gradient(circle at 82% 28%, rgba(192, 132, 252, 0.2), transparent 27%),
+    radial-gradient(circle at 12% 68%, rgba(251, 113, 133, 0.17), transparent 30%),
+    linear-gradient(180deg, #0d050a 0%, #100817 50%, #050306 100%);
+}
+
+.anniversary-sparkle {
+  background-image: radial-gradient(circle, rgba(255, 228, 230, 0.8) 0 1px, transparent 1.5px);
+  background-size: 95px 95px;
+  animation: anniversary-glow 5s ease-in-out infinite alternate;
+}
+
+@keyframes anniversary-glow {
+  from { opacity: 0.18; }
+  to { opacity: 0.48; }
+}
+
 @keyframes anniversary-float {
   0% {
     opacity: 0;
@@ -74,7 +93,8 @@ body {
   }
 
   .stars,
-  .anniversary-heart {
+  .anniversary-heart,
+  .anniversary-sparkle {
     animation: none;
   }
 
